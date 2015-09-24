@@ -1,0 +1,20 @@
+   <%= form_for @list do |f| %>
+	  <% if @list.errors.any? %>
+	    <div id="errors"
+	      <h2><%= pluralize(@list.errors.count, "error") %> prevented this list from being saved</h2>
+	      <ul>
+		    <% @list.errors.full_messages.each do |msg| %>
+		      <li><%= msg %></li>
+		      <% end %>
+	     </ul>
+	    </div>
+	<% end %>
+	<p>
+		<%= f.label :name %><br>
+		<%= f.text_field :name %>
+	<p>
+	<p>
+		<%=	f.submit %>
+	</p>
+
+	<% end %>
