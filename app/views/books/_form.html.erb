@@ -1,0 +1,20 @@
+   <%= form_for @book do |f| %>
+	  <% if @book.errors.any? %>
+	    <div id="errors"
+	      <h2><%= pluralize(@book.errors.count, "error") %> prevented this book from being saved</h2>
+	      <ul>
+		    <% @book.errors.full_messages.each do |msg| %>
+		      <li><%= msg %></li>
+		      <% end %>
+	     </ul>
+	    </div>
+	<% end %>
+	<p>
+		<%= f.label :name %><br>
+		<%= f.text_field :name %>
+	<p>
+	<p>
+		<%=	f.submit %>
+	</p>
+
+	<% end %>

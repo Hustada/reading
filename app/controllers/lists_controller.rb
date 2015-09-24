@@ -5,11 +5,12 @@ class ListsController < ApplicationController
 	end
 	
 	def create
-		@list = List.create(list_params)
+		@list = List.new(list_params)
 		if @list.save
-			@list.save
-			redirect_to root_path
+			flash[:notice] = "List created!"
+			redirect_to list_path(@list)
 		else
+			flash[:error] = "The list could not be created"
 			render 'new'
 		end
 	end
@@ -29,11 +30,12 @@ class ListsController < ApplicationController
 
 	def show
 		@list = List.find(params[:id])
+		@book = @list.books.new
 	end
 
 	private
 
 	def list_params
       params.require(:list).permit(:name)
-    end
+   end
 end

@@ -1,16 +1,18 @@
 class BooksController < ApplicationController
 
 	def new
-    @book = Book.new
+    @book = @list.books.new
 	end
 	
 	def create
-		@book = Books.create(book_params)
+		@list = List.find(params[:list_id])
+		@book = @list.books.new(book_params)
 		if @book.save
-			@book.save
-			redirect_to root_path
+			flash[:success] = "Book added!"
+			redirect_to list_path(@list)
 		else
-			render 'new'
+			flash[:error] = "You didn't fill out the entire form"
+			redirect_to list_path(@list) 
 		end
 	end
 
@@ -30,7 +32,7 @@ class BooksController < ApplicationController
 
 	def book_params
       params.require(:book).permit(:name, :author, :pages)
-    end
+  end
 
 
 end
