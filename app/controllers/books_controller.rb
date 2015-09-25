@@ -26,6 +26,10 @@ class BooksController < ApplicationController
 	end
 
 	def destroy
+		@list = List.find(params[:list_id])
+    @book = @list.books.find(params[:id])
+    @book.destroy
+    redirect_to list_path(@list)
 	end
 
 	private

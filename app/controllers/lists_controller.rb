@@ -31,6 +31,7 @@ class ListsController < ApplicationController
 	def show
 		@list = List.find(params[:id])
 		@book = @list.books.new
+		@books = @list.books.all
 	end
 
 	private
