@@ -32,11 +32,25 @@ class BooksController < ApplicationController
     redirect_to list_path(@list)
 	end
 
-	def toggle_finished
+
+	def finished
 	  @list = List.find(params[:id])
 	  @book = @list.books.find(params[:id])
-	  @book.update_attributes finished: true
-	  redirect_to list_path(@list)
+	  if @book.update(finished: true)
+	  	render
+	  else
+	  	render @list
+	  end
+  end
+
+  def unfinished
+	  @list = List.find(params[:id])
+	  @book = @list.books.find(params[:id])
+	  if @book.update(finished: false)
+	  	render
+	  else
+	  	render @list
+	  end
   end
 
 	private

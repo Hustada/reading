@@ -52,7 +52,8 @@
         <td><%=book.name %></td>
         <td><%=book.author %></td>
         <td><%=book.pages %></td>
-        <td></td>
+      
+        <td class="unfinished-book"><%= link_to "Mark as finished", finished_book_path(book), :method => :put, remote: true %></td>
         <td><%= link_to "Remove book", [@list, book], method: :delete,
                                   data: { confirm: "You sure?" } %></td>
     <% end %>
