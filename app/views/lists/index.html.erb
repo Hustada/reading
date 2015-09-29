@@ -1,5 +1,9 @@
-<h1>Reading List</h1>
+<div class="container">
+  <h1>Reading List</h1>
   <% @lists.each do |list| %>
-  	<h2><%=link_to "#{list.name}", list_path(list) %></h2>
+  <ul class="list-title">
+  	<li><%=link_to "#{list.name}", list_path(list) %></li>
+  </ul>
   <% end %>
 <p><%=link_to 'Create new list', new_list_path %></p>
+</div>

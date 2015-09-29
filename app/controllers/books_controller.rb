@@ -32,6 +32,13 @@ class BooksController < ApplicationController
     redirect_to list_path(@list)
 	end
 
+	def toggle_finished
+	  @list = List.find(params[:id])
+	  @book = @list.books.find(params[:id])
+	  @book.update_attributes finished: true
+	  redirect_to list_path(@list)
+  end
+
 	private
 
 	def book_params
